@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MoviesApp</string>
+    <string name="movie_image_description">movie image</string>
+    <string name="title_activity_detail">detail activity</string>
+
+    <string name="no_internet_connection">No internet access</string>
+
+</resources>
