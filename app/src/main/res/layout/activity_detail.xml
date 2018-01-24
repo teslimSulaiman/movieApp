@@ -54,14 +54,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/text_view_margin_top"
                     android:textSize="@dimen/rating_font_size" />
-                <CheckBox
-                    android:id="@+id/favorite"
-                    style="?android:attr/starStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/text_view_margin_top"
-
-                    />
 
             </LinearLayout>
         </LinearLayout>

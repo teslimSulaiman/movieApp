@@ -113,7 +113,6 @@ public class MainActivity extends BaseActivity implements MainView, EndlessScrol
 
             return true;
         }
-        onScrollToBottom();
         return super.onOptionsItemSelected(item);
     }
 
