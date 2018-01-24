@@ -17,6 +17,8 @@ public class Utility {
 
     final public static String LOAD_MOVIE ="Loading movies.......";
 
+    final public static int NO_OF_ITEMS_IN_GRID = 2;
+
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -25,7 +27,6 @@ public class Utility {
     }
 
     public static String formatMovieImagePath(String imagePath) {
-        imagePath.replace("\\","");
         final String MOVIE_IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
         final String MOVIE_IMAGE_SIZE_OPTION = "w185/";
         return MOVIE_IMAGE_BASE_URL + MOVIE_IMAGE_SIZE_OPTION + imagePath;

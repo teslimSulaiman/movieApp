@@ -21,6 +21,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static com.example.user.moviesapp.R.id.parent;
+
 /**
  * Created by USER on 1/21/2018.
  */
@@ -28,10 +30,21 @@ import butterknife.ButterKnife;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Holder> {
 
     private LayoutInflater mLayoutInflater;
-    private List<Movie> movieList = new ArrayList<>();
+    private List<Movie> movieList = new ArrayList<Movie>();
 
-    public MovieAdapter(LayoutInflater inflater) {
+    public MovieAdapter(LayoutInflater inflater, ArrayList<Movie> movieList) {
         mLayoutInflater = inflater;
+        this.movieList = movieList;
+
+    }
+    public void addMovies(List<Movie> movies) {
+        movieList.addAll(movies);
+        notifyDataSetChanged();
+    }
+
+    public void clearMovies() {
+        movieList.clear();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -50,15 +63,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Holder> {
         return movieList.size();
     }
 
-    public void addMovies(List<Movie> movies) {
-        movieList.addAll(movies);
-        notifyDataSetChanged();
-    }
-
-    public void clearMovies() {
-        movieList.clear();
-        notifyDataSetChanged();
-    }
 
     public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -77,10 +81,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.Holder> {
         }
 
         public void bind(Movie movie) {
-            mMovie = movie;
+            if(movie != null) {
+                String path;
+                mMovie = movie;
+                path = movie.getPosterPath();
+                Glide.with(mContext)
+                        .load(Utility.formatMovieImagePath(path))
+                        .crossFade()
+                        .error(R.drawable.ic_error)
+                        .into(movieIcon);
+            }
 
-            Picasso.with(mContext).load(Utility.formatMovieImagePath(mMovie.getPosterPath()))
-             .into(movieIcon);
         }
 
         @Override

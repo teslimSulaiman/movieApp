@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import com.example.user.moviesapp.R;
 import com.example.user.moviesapp.Utility;
@@ -51,6 +53,7 @@ public class MainActivity extends BaseActivity implements MainView, EndlessScrol
     private Calendar calendar;
     private int year, month, day;
     private String dateChosen;
+    private ArrayList<Movie> movies = new ArrayList<Movie>();
 
 
 
@@ -69,10 +72,10 @@ public class MainActivity extends BaseActivity implements MainView, EndlessScrol
 
     private void initializeList() {
         movieRecyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, Utility.NO_OF_ITEMS_IN_GRID);
         movieRecyclerView.setLayoutManager(layoutManager);
         endlessScrollListener = new EndlessScrollListener(layoutManager, this);
-        movieAdapter = new MovieAdapter(getLayoutInflater());
+        movieAdapter = new MovieAdapter(getLayoutInflater(),movies);
         movieAdapter.setMovieClickListener(movieClickListener);
         movieRecyclerView.setAdapter(movieAdapter);
         movieRecyclerView.addOnScrollListener(endlessScrollListener);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.user.moviesapp.R;
 import com.example.user.moviesapp.Utility;
 import com.example.user.moviesapp.base.BaseActivity;
@@ -42,10 +43,11 @@ public class DetailActivity extends BaseActivity {
         movieTitle.setText(movie.getTitle());
         overview.setText(movie.getOverview());
         rating.setText((movie.getRating()+ "/10"));
-        Picasso.with(this).load(Utility.formatMovieImagePath(movie.getPosterPath()))
+        Glide.with(this)
+                .load(Utility.formatMovieImagePath(movie.getPosterPath()))
+                .crossFade()
+                .error(R.drawable.ic_error)
                 .into(movieImage);
-
-
     }
 
 }
